@@ -1,0 +1,47 @@
+openapi: "3.0.0"
+info:
+  title: TODO API Document
+  version: "0.0.1"
+  description: TODO API のドキュメントです
+tags:
+  - name: opts
+    description: 運用監視関連のAPI
+  - name: tasks
+    description: タスク関連のAPI
+paths:
+  /health:
+    get:
+      tags:
+        - opts
+      responses:
+        '200':
+          description: OK
+  /tasks/1:
+    get:
+      tags:
+        - tasks
+      operationId: showTask
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskDTO"
+components:
+  schemas:
+    TaskDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: "タスクID"
+        title:
+          type: string
+          description: "タスクのタイトル"
+      required:
+        - id
+        - title
+
+
