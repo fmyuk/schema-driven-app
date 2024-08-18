@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class TaskRecord {
 
-    private long id;
+    private Long id;
     private String title;
 }
