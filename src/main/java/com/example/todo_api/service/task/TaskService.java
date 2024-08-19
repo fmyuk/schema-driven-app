@@ -32,4 +32,17 @@ public class TaskService {
                 .map(record -> new TaskEntity(record.getId(), record.getTitle()))
                 .toList();
     }
+
+    public TaskEntity update(Long taskId, String title) {
+        repository.select(taskId)
+                        .orElseThrow(() -> new TaskEntityNotFoundException(taskId));
+        repository.update(new TaskRecord(taskId, title));
+        return find(taskId);
+    }
+
+    public void delete(Long taskId) {
+        repository.select(taskId)
+                .orElseThrow(() -> new TaskEntityNotFoundException(taskId));
+        repository.delete(taskId);
+    }
 }
